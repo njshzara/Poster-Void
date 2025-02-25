@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="product-grid" id="product-grid">
+    {% for poster in posters %}
+    <article class="product-card" data-id="{{ poster.id }}">
+        <div class="product-image-container">
+            <img src="{{ poster.image }}" alt="{{ poster.title }}" class="product-image">
+        </div>
+        <div class="product-info">
+            <h2 class="product-title">{{ poster.title }}</h2>
+            <p class="product-artist">by {{ poster.artist }}</p>
+            <p class="product-description">{{ poster.description }}</p>
+            <div class="product-footer">
+                <span class="product-price">${{ "%.2f"|format(poster.price) }}</span>
+                <button class="buy-btn" data-id="{{ poster.id }}">BUY</button>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

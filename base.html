@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Void - Digital Art Collective</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Instead of using a local font, use Google Fonts for convenience -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Minimalist monochrome art posters for the digital age">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    
+    <header>
+        <div class="glitch-container">
+            <h1 class="glitch" data-text="Poster Void">Poster Void</h1>
+        </div>
+        <nav>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="SEARCH THE VOID...">
+                <div class="search-cursor"></div>
+            </div>
+            <button id="cart-toggle" class="cart-btn">
+                CART <span id="cart-count">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Cart sidebar -->
+    <aside id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <button id="close-cart" class="close-btn">×</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                TOTAL: <span id="cart-total-amount">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="checkout-btn">CHECKOUT</button>
+            <button id="clear-cart-btn" class="clear-btn">CLEAR CART</button>
+            <div class="share-cart">
+                <button id="share-twitter-btn" class="share-btn">SHARE #POSTERVOID</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Modal templates -->
+    {% include 'modals.html' %}
+
+    <!-- Poster Forge Section -->
+    <div id="poster-forge" class="poster-forge">
+        <h2>POSTER FORGE</h2>
+        <p>Create your own chaotic masterpiece</p>
+        <div class="forge-container">
+            <div class="forge-canvas-container">
+                <canvas id="forge-canvas" width="400" height="500"></canvas>
+            </div>
+            <div class="forge-controls">
+                <button id="generate-poster-btn" class="generate-btn">GENERATE VOID</button>
+                <div class="style-selectors">
+                    <button class="style-btn" data-style="noise">NOISE</button>
+                    <button class="style-btn" data-style="geometric">GEOMETRY</button>
+                    <button class="style-btn" data-style="glitch">GLITCH</button>
+                    <button class="style-btn" data-style="lines">LINES</button>
+                </div>
+                <button id="buy-generated-btn" class="buy-btn">BUY THIS VOID ($49.99)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements for hover effects -->
+    <audio id="hover-sound" preload="auto">
+        <source src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwAc0AAAAAAAAAABSAJAJAQgAAgAAAA8DcWARbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//tAwAAAHUAKwAAAAIAKoGVAAAAA///////////////////////////////////////////////M+Z/zPImRMiJERERETMzP/zMzETMzERERESiJmZmZmZmZmaqqqqqqqqqqqqpVVVVVVVVVVVVVVVVVVVVVVVVVKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqo=" type="audio/mp3">
+    </audio>
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/posterforge.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/effects.js') }}"></script>
+</body>
+</html>
